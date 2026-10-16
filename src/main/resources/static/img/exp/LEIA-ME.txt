@@ -1,0 +1,3 @@
+Coloque aqui as fotos das experiências (jpg ou png) e use o caminho no config.js, por exemplo:
+fotos: ["/img/exp/canguru.jpg"]
+Enquanto a foto não existir, o site mostra um quadro "Adicione uma foto".
