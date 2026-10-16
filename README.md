@@ -7,6 +7,7 @@
 [Rodar localmente](#rodando) · [Mexer nos meus dados](#personalizando) · [Falar comigo](#contato)
 
 -- link do site em preview versel --
+https://portfolio-38k7.onrender.com/
 
 </div>
 
