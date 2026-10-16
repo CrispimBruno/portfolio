@@ -6,6 +6,8 @@
 
 [Rodar localmente](#rodando) · [Mexer nos meus dados](#personalizando) · [Falar comigo](#contato)
 
+-- link do site em preview versel --
+
 </div>
 
 <img src="docs/divider.svg" alt="" width="100%">
