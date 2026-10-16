@@ -684,3 +684,325 @@ textarea:focus {
     height: 32px;
   }
 }
+
+/* =====================================================================
+   RESPONSIVO
+   Só CSS: o JS posiciona as janelas com left/top inline, então nas telas
+   pequenas as regras abaixo usam !important para centralizar as janelas
+   em "cartões" empilhados abaixo da barra e acima do player.
+   ===================================================================== */
+:root {
+  --pad: 56px; /* margem lateral da barra e do player */
+  --wtop: 122px; /* topo das janelas (abaixo da barra) */
+  --wbot: 112px; /* espaço reservado embaixo (player) */
+}
+body {
+  height: 100vh;
+  height: 100dvh;
+  -webkit-text-size-adjust: 100%;
+}
+.body {
+  max-height: 62vh;
+  max-height: 62dvh;
+  overscroll-behavior: contain;
+}
+input,
+textarea {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+textarea {
+  resize: vertical;
+}
+.win .x {
+  min-width: 36px;
+}
+
+/* ---------- até 1100px: barra em duas linhas (data + ferramentas / menu rolável) ---------- */
+@media (max-width: 1100px) {
+  .bar {
+    left: var(--pad);
+    right: var(--pad);
+    row-gap: 8px;
+  }
+  .bar nav {
+    order: 3;
+    flex: 0 0 calc(100% + 28px);
+    min-width: 0;
+    margin: -4px -14px;
+    padding: 4px 14px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 14px,
+      #000 calc(100% - 14px),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 14px,
+      #000 calc(100% - 14px),
+      transparent 100%
+    );
+  }
+  .bar nav::-webkit-scrollbar {
+    display: none;
+  }
+  .bar nav .nb {
+    flex: none;
+    white-space: nowrap;
+  }
+  .num img {
+    height: 36px;
+  }
+}
+
+/* ---------- até 820px (tablet em pé e celular): janelas viram cartões centralizados ---------- */
+@media (max-width: 820px) {
+  :root {
+    --ww: min(520px, 92vw);
+  }
+  .win {
+    width: var(--ww);
+    left: calc(50vw - var(--ww) / 2) !important;
+    top: var(--wtop) !important;
+    height: min(calc(100vh - var(--wtop) - var(--wbot)), 640px);
+    height: min(calc(100dvh - var(--wtop) - var(--wbot)), 640px);
+    display: flex;
+    flex-direction: column;
+    background: var(--mid);
+  }
+  .win > header {
+    flex: none;
+    cursor: default;
+  }
+  .win .body {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: none;
+  }
+}
+
+/* ---------- até 700px: celular ---------- */
+@media (max-width: 700px) {
+  :root {
+    --pad: 34px;
+    --wbot: 108px;
+  }
+  body {
+    font-size: 16px;
+  }
+  .hud {
+    inset: 8px;
+  }
+  .c {
+    width: 20px;
+    height: 20px;
+  }
+  .a {
+    top: 14px;
+    left: 14px;
+  }
+  .b {
+    top: 14px;
+    right: 14px;
+  }
+  .d {
+    bottom: 14px;
+    left: 14px;
+  }
+  .e {
+    bottom: 14px;
+    right: 14px;
+  }
+  .bar {
+    top: 26px;
+  }
+  .num img {
+    height: 32px;
+  }
+  .bar .nb {
+    padding: 5px 12px;
+  }
+  .big img {
+    height: 96px;
+  }
+  .st {
+    grid-template-columns: 96px 1fr;
+  }
+  .cr {
+    gap: 8px;
+  }
+  .cr img {
+    width: calc(50% - 4px);
+    height: auto;
+    max-height: 170px;
+    object-fit: contain;
+  }
+  #skip {
+    right: 20px;
+    bottom: 20px;
+  }
+  /* player ocupa a largura toda, no rodapé */
+  .mp {
+    left: var(--pad);
+    right: var(--pad);
+    bottom: 22px;
+    max-width: none;
+    gap: 8px;
+    padding: 6px 10px;
+  }
+  .dw {
+    width: 44px;
+    height: 44px;
+  }
+  .mi {
+    flex: 1 1 auto;
+    width: auto;
+    min-width: 0;
+  }
+}
+
+/* ---------- até 420px: celulares pequenos ---------- */
+@media (max-width: 420px) {
+  :root {
+    --pad: 30px;
+    --wtop: 114px;
+    --wbot: 104px;
+    --ww: 94vw;
+  }
+  .hud {
+    inset: 6px;
+  }
+  .a,
+  .b {
+    top: 12px;
+  }
+  .d,
+  .e {
+    bottom: 12px;
+  }
+  .a,
+  .d {
+    left: 12px;
+  }
+  .b,
+  .e {
+    right: 12px;
+  }
+  .bar {
+    top: 24px;
+  }
+  .num img {
+    height: 26px;
+  }
+  .bar .nb {
+    font-size: 15px;
+    padding: 4px 10px;
+  }
+  .body {
+    padding: 12px;
+  }
+  .st {
+    grid-template-columns: 84px 1fr;
+  }
+  .board {
+    gap: 4px;
+  }
+  .mp {
+    bottom: 18px;
+    gap: 6px;
+  }
+  .mp button {
+    padding: 6px;
+  }
+  .dw {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* ---------- telas baixas (celular deitado): barra numa linha só ---------- */
+@media (max-height: 520px) {
+  :root {
+    --wtop: 66px;
+    --wbot: 84px;
+  }
+  .hud {
+    inset: 6px;
+  }
+  .bar {
+    top: 14px;
+    flex-wrap: nowrap;
+  }
+  .bar nav {
+    order: 0;
+    flex: 1 1 0;
+    margin: -4px 0;
+  }
+  .num img {
+    height: 26px;
+  }
+  .bar .nb {
+    font-size: 15px;
+    padding: 3px 12px;
+  }
+  .win {
+    top: var(--wtop) !important;
+    max-height: calc(100vh - var(--wtop) - var(--wbot));
+    max-height: calc(100dvh - var(--wtop) - var(--wbot));
+    display: flex;
+    flex-direction: column;
+  }
+  .win .body {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: none;
+  }
+  .mp {
+    bottom: 14px;
+    padding: 4px 8px;
+  }
+  .dw {
+    width: 36px;
+    height: 36px;
+  }
+  .mi,
+  #mvol {
+    display: none;
+  }
+  .big img {
+    height: 80px;
+  }
+  .cr img {
+    height: 120px;
+    width: auto;
+  }
+}
+
+/* ---------- toque (sem mouse) ---------- */
+@media (pointer: coarse) {
+  .win .x {
+    min-height: 36px;
+  }
+  .bar .nb {
+    min-height: 36px;
+  }
+  .mp button {
+    min-width: 36px;
+    min-height: 36px;
+  }
+}
+@media (hover: none) {
+  .q a:hover,
+  .soc a:hover,
+  .cr img:hover {
+    transform: none;
+  }
+}

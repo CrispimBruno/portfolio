@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Crispim · Portfólio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div id="boot">
+      <video
+        id="bv"
+        src="/media/intro.mp4"
+        poster="/media/poster.jpg"
+        muted
+        playsinline
+      ></video>
+      <button id="skip" data-i18n="skip" th:text="#{skip}">Pular</button>
+    </div>
+
+    <main id="app">
+      <div class="hud">
+        <i class="c a"></i><i class="c b"></i><i class="c d"></i
+        ><i class="c e"></i>
+      </div>
+      <header class="bar">
+        <div class="date">
+          <span id="dd" class="num"></span><b>/</b
+          ><span id="mm" class="num"></span>
+        </div>
+        <nav>
+          <button
+            class="nb"
+            data-win="status"
+            data-i18n="nav.status"
+            th:text="#{nav.status}"
+          >
+            Status
+          </button>
+          <button
+            class="nb"
+            data-win="github"
+            data-i18n="nav.github"
+            th:text="#{nav.github}"
+          >
+            GitHub
+          </button>
+          <button
+            class="nb"
+            data-win="resume"
+            data-i18n="nav.resume"
+            th:text="#{nav.resume}"
+          >
+            Currículo
+          </button>
+          <button
+            class="nb"
+            data-win="game"
+            data-i18n="nav.game"
+            th:text="#{nav.game}"
+          >
+            Mini jogo
+          </button>
+          <button
+            class="nb"
+            data-win="credits"
+            data-i18n="nav.credits"
+            th:text="#{nav.credits}"
+          >
+            Créditos
+          </button>
+          <button class="nb" data-win="exp" data-i18n="nav.exp" th:text="#{nav.exp}">Experiências</button>
+          <button
+            class="nb"
+            data-win="contact"
+            data-i18n="nav.contact"
+            th:text="#{nav.contact}"
+          >
+            Contato
+          </button>
+          <button
+            class="nb"
+            data-win="social"
+            data-i18n="nav.social"
+            th:text="#{nav.social}"
+          >
+            Redes
+          </button>
+        </nav>
+        <div class="tools">
+          <button id="lang" class="nb">EN</button
+          ><button id="theme" class="nb" aria-label="Dark mode">◐</button>
+        </div>
+      </header>
+      <section id="desk"></section>
+      <aside class="mp" aria-label="Player">
+        <div class="dw"><img class="disc" alt="" /></div>
+        <div class="mi"><b class="mt"></b><span class="ma"></span></div>
+        <button id="mprev" class="nb" aria-label="Anterior"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zM20 6v12L9 12z"/></svg></button>
+        <button id="mplay" class="nb" aria-label="Play / Pause"></button>
+        <button id="mnext" class="nb" aria-label="Próxima"><svg viewBox="0 0 24 24"><path d="M16 6h2v12h-2zM4 6l11 6-11 6z"/></svg></button>
+        <input id="mvol" type="range" min="0" max="1" step="0.01" aria-label="Volume" />
+      </aside>
+    </main>
+
+    <template id="t-status">
+      <h2>Crispim</h2>
+      <p class="mut" data-i18n="status.role" th:text="#{status.role}"></p>
+      <p data-i18n="status.bio" th:text="#{status.bio}"></p>
+      <h3 data-i18n="status.attr" th:text="#{status.attr}"></h3>
+      <div class="attrs"></div>
+      <h3 data-i18n="status.quests" th:text="#{status.quests}"></h3>
+      <div class="q"></div>
+    </template>
+
+    <template id="t-github">
+      <p class="mut" data-i18n="github.text" th:text="#{github.text}"></p>
+      <div id="repos" class="num big"></div>
+      <a
+        id="ghlink"
+        class="nb link"
+        target="_blank"
+        rel="noopener"
+        data-i18n="github.open"
+        th:text="#{github.open}"
+      ></a>
+    </template>
+
+    <template id="t-resume">
+      <h3 data-i18n="resume.edu" th:text="#{resume.edu}"></h3>
+      <p data-i18n="resume.edu1" th:text="#{resume.edu1}"></p>
+      <h3 data-i18n="resume.xp" th:text="#{resume.xp}"></h3>
+      <p data-i18n="resume.xp1" th:text="#{resume.xp1}"></p>
+      <h3 data-i18n="resume.tech" th:text="#{resume.tech}"></h3>
+      <p class="tech"></p>
+    </template>
+
+    <template id="t-game">
+      <div class="gbar">
+        <span
+          ><span data-i18n="game.moves" th:text="#{game.moves}"></span>
+          <span class="num moves"></span
+        ></span>
+        <button
+          class="nb reset"
+          data-i18n="game.reset"
+          th:text="#{game.reset}"
+        ></button>
+      </div>
+      <div class="board"></div>
+      <p class="winmsg" data-i18n="game.win" th:text="#{game.win}" hidden></p>
+    </template>
+
+    <template id="t-exp"><div class="exp"></div></template>
+
+    <template id="t-credits">
+      <div class="cr">
+        <img src="/img/9lana.png" alt="9lana" /><img
+          src="/img/ado.png"
+          alt="Ado"
+        />
+      </div>
+      <p data-i18n="credits.text" th:text="#{credits.text}"></p>
+    </template>
+    <template id="t-contact">
+      <form>
+        <label
+          ><span data-i18n="contact.name" th:text="#{contact.name}"></span
+          ><input name="from_name" required maxlength="80"
+        /></label>
+        <label
+          ><span data-i18n="contact.email" th:text="#{contact.email}"></span
+          ><input name="reply_to" type="email" required maxlength="120"
+        /></label>
+        <label
+          ><span data-i18n="contact.msg" th:text="#{contact.msg}"></span
+          ><textarea
+            name="message"
+            rows="5"
+            required
+            maxlength="2000"
+          ></textarea>
+        </label>
+        <button
+          class="nb"
+          type="submit"
+          data-i18n="contact.send"
+          th:text="#{contact.send}"
+        ></button>
+        <p class="cs" role="status"></p>
+        <a
+          class="cf link"
+          hidden
+          data-i18n="contact.fallback"
+          th:text="#{contact.fallback}"
+        ></a>
+      </form>
+    </template>
+    <template id="t-social">
+      <p class="mut" data-i18n="social.text" th:text="#{social.text}"></p>
+      <div class="soc"></div>
+    </template>
+    <script src="/js/config.js"></script>
+    <script src="/js/app.js"></script>
+  </body>
+</html>
